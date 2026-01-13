@@ -18,7 +18,7 @@ class LeoNtpItem:
     name: str = ""
     key: str = ""
     type: str = ""
-    state: str = ""
+    state: str | int | float | bool | None = None
     device_key: str = ""
     device_name: str = ""
     device_model: str = ""

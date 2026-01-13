@@ -40,6 +40,7 @@ SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
         key = "requests_served",
         icon = "mdi:account-search-outline",
         state_class = SensorStateClass.TOTAL_INCREASING,
+        native_unit_of_measurement = "requests",
     ),
     LeoNtpSensorDescription(
         key = "uptime",
@@ -65,6 +66,7 @@ SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
         key = "satellites",
         icon = "mdi:satellite-uplink",
         state_class = SensorStateClass.MEASUREMENT,
+        native_unit_of_measurement = "satellites",
     ),
     LeoNtpSensorDescription(
         key = "firmware_version",
@@ -146,7 +148,7 @@ class LeoNtpSensor(LeoNtpEntity, SensorEntity):
         self.entity_id = f"sensor.{DOMAIN}_{self.item.key}"
 
     @property
-    def native_value(self) -> str:
+    def native_value(self) -> StateType:
         """Return the status of the sensor."""
         state = self.item.state
 
