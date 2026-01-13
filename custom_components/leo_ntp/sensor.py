@@ -45,6 +45,7 @@ SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
         key = "uptime",
         icon = "mdi:timer-sand",
         state_class = SensorStateClass.TOTAL,
+        native_unit_of_measurement = "s",
     ),
     LeoNtpSensorDescription(
         key = "gps_lock",
@@ -54,6 +55,7 @@ SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
         key = "gps_lock_time",
         icon = "mdi:timer-lock-open-outline",
         state_class = SensorStateClass.TOTAL,
+        native_unit_of_measurement = "s",
     ),
     LeoNtpSensorDescription(
         key = "gps_flags",
