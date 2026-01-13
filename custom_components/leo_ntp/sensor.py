@@ -6,6 +6,7 @@ from typing import Any
 
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.components.sensor import SensorEntityDescription
+from homeassistant.components.sensor import SensorStateClass
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityDescription
@@ -37,11 +38,13 @@ SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
     ),
     LeoNtpSensorDescription(
         key = "requests_served",
-        icon = "mdi:account-search-outline"
+        icon = "mdi:account-search-outline",
+        state_class = SensorStateClass.TOTAL_INCREASING,
     ),
     LeoNtpSensorDescription(
         key = "uptime",
-        icon = "mdi:timer-sand"
+        icon = "mdi:timer-sand",
+        state_class = SensorStateClass.TOTAL,
     ),
     LeoNtpSensorDescription(
         key = "gps_lock",
@@ -49,7 +52,8 @@ SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
     ),
     LeoNtpSensorDescription(
         key = "gps_lock_time",
-        icon = "mdi:timer-lock-open-outline"
+        icon = "mdi:timer-lock-open-outline",
+        state_class = SensorStateClass.TOTAL,
     ),
     LeoNtpSensorDescription(
         key = "gps_flags",
@@ -57,7 +61,8 @@ SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
     ),
     LeoNtpSensorDescription(
         key = "satellites",
-        icon = "mdi:satellite-uplink"
+        icon = "mdi:satellite-uplink",
+        state_class = SensorStateClass.MEASUREMENT,
     ),
     LeoNtpSensorDescription(
         key = "firmware_version",
@@ -103,6 +108,7 @@ async def async_setup_entry(
                     native_unit_of_measurement = native_unit_of_measurement,
                     icon = description.icon,
                     translation_key = description.translation_key,
+                    state_class = description.state_class,
                 )
 
                 log_debug(f"[sensor|async_setup_entry|adding] {item.name}")
